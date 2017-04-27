@@ -19,8 +19,10 @@ import argparse # for command line arguments
 #   C O N S T A N T S   #
 # # # # # # # # # # # # #
 
-TCGA_PREFIX = 'TCGA' # prefix of string to identify a TCGA barcode in input file
-DELIMINATOR = ','    # character used to separate each barcode in output
+TCGA_PREFIX = 'TCGA'   # prefix of string to identify a TCGA barcode in input file
+NUM_IDS_IN_BARCODE = 3 # number of first '-' separated sections we say is the barcode.
+                       #   there is more but we ignore the rest after the NUM_IDS_IN_BARCODE occurance of a '-'
+DELIMINATOR = ','      # character used to separate each barcode in output
 
 
 # # # # # # # # # # # # #
@@ -40,8 +42,15 @@ def get_barcodes(file):
 		# split by tabs \t, get first column [0], and remove quotes using translate
 		first_col_val = line.split('\t')[0].translate(None, '\"')
 		if TCGA_PREFIX in first_col_val:
-			barcodes.append(first_col_val)
+			barcodes.append(split_nth_occurance(first_col_val, NUM_IDS_IN_BARCODE, '-'))
 	return barcodes
+
+# input: s (string) string to split
+#        n (int) number of occurances before we split string
+#        d (string) deliminator that we look for
+def split_nth_occurance(s, n, d):
+	groups = s.split(d)
+	return d.join(groups[:n])
 
 
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
