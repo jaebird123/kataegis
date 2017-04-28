@@ -1,9 +1,8 @@
-#     file: run_TCGA_barcode.py
+#     file: kataegis_extract_barcode_qval.py
 #   author: Jesse Eaton
-#  created: April 9, 2017
-# modified: April 9, 2017
-#  purpose: uses the Broad Institute's MAF sorted sum of all Fisher correlation values
-#             for each sample and prints the sample barcodes to standard output
+#  created: April 27, 2017
+# modified: April 27, 2017
+#  purpose: Outputs only cleaned TCGA barcode and q value enrichment
 
 
 # # # # # # # # # # #
@@ -19,10 +18,9 @@ import argparse # for command line arguments
 #   C O N S T A N T S   #
 # # # # # # # # # # # # #
 
-TCGA_PREFIX = 'TCGA'   # prefix of string to identify a TCGA barcode in input file
-NUM_IDS_IN_BARCODE = 3 # number of first '-' separated sections we say is the barcode.
-                       #   there is more but we ignore the rest after the NUM_IDS_IN_BARCODE occurance of a '-'
-DELIMINATOR = ','      # character used to separate each barcode in output
+KAT_FILE_BARCODE_COL = 0  # column with TCGA barcode
+KAT_FILE_Q_VAL_COL   = 58 # column that contains q values of CG enrichment
+NUM_IDS_IN_BARCODE   = 3  # number of '-' separated strings to keep in TCGA barcode. keep first 3
 
 
 # # # # # # # # # # # # #
@@ -31,19 +29,19 @@ DELIMINATOR = ','      # character used to separate each barcode in output
 
 def main(argv):
 	args = get_args(argv)
-	barcodes = get_barcodes(args['input_file'])
-	print DELIMINATOR.join(barcodes)
+	
+	s = ''
+	for line in args['input_file']:
+		cols = line.split('\t')
+		barcode = clean_barcode(cols[KAT_FILE_BARCODE_COL])
+		q_val = cols[KAT_FILE_Q_VAL_COL]
+		if 'TCGA' in barcode: # exclude header and footer rows
+			s += barcode + '\t' + q_val + '\n'
+	print s
 
-#  input: fname (string) name of input file (should have .txt extension)
-# output: barcodes (list of strings) TCGA barcodes for each sample listed in input file
-def get_barcodes(file):
-	barcodes = []
-	for line in file:
-		# split by tabs \t, get first column [0], and remove quotes using translate
-		first_col_val = line.split('\t')[0].translate(None, '\"')
-		if TCGA_PREFIX in first_col_val:
-			barcodes.append(split_nth_occurance(first_col_val, NUM_IDS_IN_BARCODE, '-'))
-	return barcodes
+# shortens to first 3 IDs in barcode and removes quotes
+def clean_barcode(barcode):
+	return split_nth_occurance(barcode.replace('"', ''), NUM_IDS_IN_BARCODE, '-')
 
 # input: s (string) string to split
 #        n (int) number of occurances before we split string
@@ -58,7 +56,7 @@ def split_nth_occurance(s, n, d):
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 
 def get_args(argv):
-	parser = argparse.ArgumentParser(prog = 'run_TCGA_barcode.py', description = "uses the Broad Institute's MAF sorted sum of all Fisher correlation values for each sample and prints the sample barcodes to standard output")
+	parser = argparse.ArgumentParser(prog = 'barcode_and_q_values.py', description = "creates a tab separated value sheet with TCGA barcodes and q-value enrichment")
 	parser.add_argument('input_file', help = 'input .txt file', type = lambda x: is_valid_file(parser, x))
 	return vars(parser.parse_args(argv))
 
