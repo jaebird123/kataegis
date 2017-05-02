@@ -69,7 +69,6 @@ def elements_with(arr, substr):
 			out_arr.append(elem)
 	return out_arr
 
-
 #  input: in_dir (string) name of input directory
 #         exts (list of string) file extensions. should including '.' in string. ex. '.vcf'
 # output: dic (dictionary) keys are subdirectories (folder names) of input directory

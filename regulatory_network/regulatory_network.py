@@ -48,7 +48,8 @@ def main(argv):
 	if args['top_genes_plot']:
 		num_genes = args['top_genes_plot']
 		plot = AnalyzePanda(p)
-		plot.top_network_plot(top = num_genes, file = 'top_' + str(num_genes) + '_genes.png')
+		plot_fname = os.path.splitext(args['panda_output_file'])[0] + '.top_' + str(num_genes) + '_genes.png'
+		plot.top_network_plot(top = num_genes, file = plot_fname)
 
 	if args['lion_output_file']:
 
@@ -56,7 +57,7 @@ def main(argv):
 		l = Lioness(p)
 
 		# save Lioness
-		l.save_lioness_results(file = 'Toy_Lioness.txt')
+		l.save_lioness_results(file = args['lion_output_file'])
 
 	# plot = AnalyzeLioness(l)
 	# plot.top_network_plot(column= 0, top = 100, file = 'top_100_genes.png')
