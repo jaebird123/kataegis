@@ -1,5 +1,5 @@
 #     file: rnaseq_filter.py
-#   author: Jesse Eaton
+#   author: Jesse Eaton and Jacob West-Roberts
 #  created: April 27, 2017
 # modified: April 27, 2017
 #  purpose: transposes RNA sequence data so output rows are samples (with a TCGA barcode) and cols

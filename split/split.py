@@ -1,5 +1,5 @@
 #     file: split.py
-#   author: Jesse Eaton
+#   author: Jesse Eaton and Jacob West-Roberts
 #  created: April 30, 2017
 # modified: April 30, 2017
 #  purpose: Splits RNA sequence data to kataegis positive and kataegis negative files

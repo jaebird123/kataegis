@@ -1,5 +1,5 @@
 #     file: gene_reduction.py
-#   author: Jesse Eaton
+#   author: Jesse Eaton and Jacob West-Roberts
 #  created: April 29, 2017
 # modified: April 29, 2017
 #  purpose: Remove genes we are 1-alpha percent confident are not differentially expressed

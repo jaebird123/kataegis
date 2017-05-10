@@ -1,5 +1,5 @@
 #     file: plot_expression_diff.py
-#   author: Jesse Eaton
+#   author: Jesse Eaton and Jacob West-Roberts
 #  created: April 28, 2017
 # modified: April 28, 2017
 #  purpose: plots histogram of number of genes VS difference in mean expression levels between

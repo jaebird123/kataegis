@@ -1,5 +1,5 @@
 #     file: kataegis_extract_barcode_qval.py
-#   author: Jesse Eaton
+#   author: Jesse Eaton and Jacob West-Roberts
 #  created: April 27, 2017
 # modified: April 27, 2017
 #  purpose: Outputs only cleaned TCGA barcode and q value enrichment

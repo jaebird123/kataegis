@@ -1,5 +1,5 @@
 #     file: many_regulatory_network.py
-#   author: Jesse Eaton
+#   author: Jesse Eaton and Jacob West-Roberts
 #  created: May 1, 2017
 # modified: May 1, 2017
 #  purpose: Iteratively calls regulatory_network.py on many directories

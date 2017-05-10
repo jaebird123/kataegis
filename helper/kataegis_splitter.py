@@ -1,5 +1,5 @@
 #     file: kataegis_splitter.py
-#   author: Jesse Eaton
+#   author: Jesse Eaton and Jacob West-Roberts
 #  created: April 29, 2017
 # modified: April 29, 2017
 #  purpose: For splitting RNA sequence data to kataegis positive and kataegis negative samples

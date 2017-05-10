@@ -1,5 +1,5 @@
 #     file: plot_ego_graphs.py
-#   author: Jesse Eaton
+#   author: Jesse Eaton and Jacob West-Roberts
 #  created: May 2, 2017
 # modified: May 2, 2017
 #  purpose: Plots ego graph (subgraph of node and all neighbors) for set of genes
@@ -40,8 +40,8 @@ def main(argv):
 	# create graph
 	graph = get_graph(pairs, args['edge_threshold'])
 
-	for gene_name in GENE_NAMES:
-		write_ego_graph(graph, gene_name)
+	# for gene_name in GENE_NAMES:
+	# 	write_ego_graph(graph, gene_name)
 
 	if args['kat_neg']:
 		kat_pos_pairs = pairs
@@ -52,7 +52,7 @@ def main(argv):
 			neg_vals = kat_neg_gene_neighbor_dic[gene_name]
 			write_plot_neighbors_vs_edge_weights(pos_vals, neg_vals, THRESHES, gene_name)
 
-	exit()
+	# exit()
 
 	# PLOT TOP HUBS
 	node_and_degree = graph.degree()

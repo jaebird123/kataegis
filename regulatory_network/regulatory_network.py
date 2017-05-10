@@ -1,5 +1,5 @@
 #     file: regulatory_network.py
-#   author: Jesse Eaton
+#   author: Jesse Eaton and Jacob West-Roberts
 #  created: May 1, 2017
 # modified: May 1, 2017
 #  purpose: Create gene regulatory network for each sample from RNA sequence input
